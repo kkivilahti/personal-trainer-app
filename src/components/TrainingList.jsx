@@ -13,6 +13,7 @@ export default function TrainingList() {
 
     const { trainings } = useOutletContext();
     const { loadTrainings } = useOutletContext();
+    const { loadCustomers } = useOutletContext();
     const { customers } = useOutletContext();
 
     const format = (date) => {
@@ -38,7 +39,7 @@ export default function TrainingList() {
             minWidth: 120,
             flex: 1,
             cellRenderer: (params) => (
-                <Delete params={params} title="training" loadTrainings={loadTrainings} deleteTraining={deleteTraining} />
+                <Delete params={params} title="training" loadTrainings={loadTrainings} loadCustomers={loadCustomers} deleteTraining={deleteTraining} />
             )
         }
     ]);

@@ -19,11 +19,7 @@ export default function AddTraining(props) {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => setOpen(true);
-    const handleClose = () => {
-        // clear input fields when the form is closed
-        setTraining(emptyTraining);
-        setOpen(false)
-    };
+    const handleClose = () => setOpen(false);
 
     const handleSave = async () => {
         console.log("Add training", training);
@@ -33,7 +29,9 @@ export default function AddTraining(props) {
         if (training.date && training.duration && training.activity && training.customer) {
             await addTraining(training);
             success = true;
+            
             setOpen(false);
+            setTraining(emptyTraining);
         } else {
             // empty input fields -> open alert message
             setAlertOpen(true);
@@ -59,6 +57,7 @@ export default function AddTraining(props) {
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DatePicker
                                     label="Date"
+                                    name="Date"
                                     format="DD.MM.YYYY"
                                     slotProps={{ textField: { fullWidth: true, sx: { marginTop: 1 } } }}
                                     value={training.date}
@@ -72,6 +71,7 @@ export default function AddTraining(props) {
                                 sx={{ marginTop: 1 }}
                                 fullWidth
                                 label="Duration"
+                                name="Duration"
                                 type="number"
                                 value={training.duration}
                                 onChange={(event) => setTraining({ ...training, duration: event.target.value })}
@@ -83,6 +83,7 @@ export default function AddTraining(props) {
                                 sx={{ marginTop: 1 }}
                                 fullWidth
                                 label="Activity"
+                                name="Activity"
                                 value={training.activity}
                                 onChange={(event) => setTraining({ ...training, activity: event.target.value })}
                             />
@@ -100,6 +101,7 @@ export default function AddTraining(props) {
                                 <Select
                                     labelId="customer-label"
                                     label="Customer"
+                                    name="Customer"
                                     value={training.customer}
                                     onChange={(event) => setTraining({ ...training, customer: event.target.value })}
                                 >

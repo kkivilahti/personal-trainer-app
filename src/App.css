@@ -56,3 +56,9 @@ a:hover {
   }
 }
 
+@media (max-width: 1600px) {
+  .table-container {
+    height: 60vh;
+  }
+}
+

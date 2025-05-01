@@ -20,7 +20,9 @@ export default function EditCustomer(props) {
             success = true;
             setOpen(false);
             
+            // refresh both lists after editing
             await props.loadCustomers();
+            await props.loadTrainings();
         } else {
             // empty input fields -> open alert message
             props.setAlertOpen(true);
@@ -45,6 +47,7 @@ export default function EditCustomer(props) {
                                 sx={{ marginTop: 1 }}
                                 fullWidth
                                 label="Firstname"
+                                name="Firstname"
                                 value={customer.firstname}
                                 onChange={(event) => setCustomer({ ...customer, firstname: event.target.value })}
                             />
@@ -55,6 +58,7 @@ export default function EditCustomer(props) {
                                 sx={{ marginTop: 1 }}
                                 fullWidth
                                 label="Lastname"
+                                name="Lastname"
                                 value={customer.lastname}
                                 onChange={(event) => setCustomer({ ...customer, lastname: event.target.value })}
                             />
@@ -65,6 +69,7 @@ export default function EditCustomer(props) {
                                 sx={{ marginTop: 1 }}
                                 fullWidth
                                 label="Address"
+                                name="Address"
                                 value={customer.streetaddress}
                                 onChange={(event) => setCustomer({ ...customer, streetaddress: event.target.value })}
                             />
@@ -75,6 +80,7 @@ export default function EditCustomer(props) {
                                 sx={{ marginTop: 1 }}
                                 fullWidth
                                 label="Postcode"
+                                name="Postcode"
                                 value={customer.postcode}
                                 onChange={(event) => setCustomer({ ...customer, postcode: event.target.value })}
                             />
@@ -85,6 +91,7 @@ export default function EditCustomer(props) {
                                 sx={{ marginTop: 1 }}
                                 fullWidth
                                 label="City"
+                                name="City"
                                 value={customer.city}
                                 onChange={(event) => setCustomer({ ...customer, city: event.target.value })}
                             />
@@ -95,6 +102,7 @@ export default function EditCustomer(props) {
                                 sx={{ marginTop: 1 }}
                                 fullWidth
                                 label="Email"
+                                name="Email"
                                 value={customer.email}
                                 onChange={(event) => setCustomer({ ...customer, email: event.target.value })}
                             />
@@ -105,12 +113,12 @@ export default function EditCustomer(props) {
                                 sx={{ marginTop: 1 }}
                                 fullWidth
                                 label="Phone"
+                                name="Phone"
                                 value={customer.phone}
                                 onChange={(event) => setCustomer({ ...customer, phone: event.target.value })}
                             />
                         </Grid>
                     </Grid>
-
                     <DialogActions sx={{ display: 'flex', flexGrow: 1, justifyContent: 'center', marginTop: 2 }}>
                         <Button variant="contained" color="primary" onClick={handleClose}>Cancel</Button>
                         <Button variant="contained" color="secondary" onClick={handleSave}>Save</Button>

@@ -17,6 +17,7 @@ export default function CustomerList() {
 
     const { customers } = useOutletContext();
     const { loadCustomers } = useOutletContext();
+    const { loadTrainings } = useOutletContext();
 
     const [colDefs] = useState([
         { field: 'lastname', minWidth: 130, flex: 2 },
@@ -32,7 +33,7 @@ export default function CustomerList() {
             minWidth: 120,
             flex: 1,
             cellRenderer: (params) => (
-                <EditCustomer params={params} loadCustomers={loadCustomers} editCustomer={editCustomer} alertOpen={alertOpen} setAlertOpen={setAlertOpen} />
+                <EditCustomer params={params} loadCustomers={loadCustomers} loadTrainings={loadTrainings} editCustomer={editCustomer} alertOpen={alertOpen} setAlertOpen={setAlertOpen} />
             )
         },
         {
@@ -41,7 +42,7 @@ export default function CustomerList() {
             minWidth: 120,
             flex: 1,
             cellRenderer: (params) => (
-                <Delete params={params} title="customer" loadCustomers={loadCustomers} deleteCustomer={deleteCustomer} />
+                <Delete params={params} title="customer" loadCustomers={loadCustomers} loadTrainings={loadTrainings} deleteCustomer={deleteCustomer} />
             )
         }
     ]);

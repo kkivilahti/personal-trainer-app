@@ -27,7 +27,6 @@ export default function Delete(props) {
                 console.error('Deleting customer failed');
             }
 
-            await props.loadCustomers();
             setOpen(false);
 
         } else if (props.title === 'training') {
@@ -38,9 +37,12 @@ export default function Delete(props) {
                 console.error('Deleting training failed');
             }
 
-            await props.loadTrainings();
             setOpen(false);
         }
+
+        // refresh both lists
+        await props.loadCustomers();
+        await props.loadTrainings();
     }
 
     return (
