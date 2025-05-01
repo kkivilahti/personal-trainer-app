@@ -3,11 +3,15 @@ import { AllCommunityModule, ModuleRegistry, themeMaterial } from 'ag-grid-commu
 import { AgGridReact } from 'ag-grid-react';
 import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
+import AddCustomer from './AddCustomer';
+import Delete from './Delete';
+import { deleteCustomer } from '../api/customersApi';
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 export default function CustomerList() {
-    
+
     const { customers } = useOutletContext();
+    const { loadCustomers } = useOutletContext();
 
     const [colDefs] = useState([
         { field: 'lastname' },
@@ -16,7 +20,14 @@ export default function CustomerList() {
         { field: 'postcode' },
         { field: 'city' },
         { field: 'email' },
-        { field: 'phone' }
+        { field: 'phone' },
+        {
+            filter: false,
+            sortable: false,
+            cellRenderer: (params) => (
+                <Delete params={params} title="customer" loadCustomers={loadCustomers} deleteCustomer={deleteCustomer} />
+            )
+        }
     ]);
 
     const defaultColDef = {
@@ -30,6 +41,8 @@ export default function CustomerList() {
     return (
         <>
             <Typography variant="h1">Customers</Typography>
+
+            <AddCustomer loadCustomers={loadCustomers} />
 
             <Box className="center">
                 <Box className="table-container">

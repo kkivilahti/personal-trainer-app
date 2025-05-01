@@ -8,21 +8,24 @@
 
 a {
   text-decoration: none;
-  color: rgb(7, 156, 156);
+  color: #ca354e;
 }
 
 a:hover {
   text-decoration: none;
-  color: rgb(50, 180, 180);
+  color: #d16d7e;
 }
 
+/* nav settings */
 .nav-link {
+  font-size: 1.2rem;
   color: #ffffffab;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .nav-active {
+  font-size: 1.2rem;
   color: #ffffff;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -32,11 +35,14 @@ a:hover {
   color: #7ccec6;
 }
 
+
+/* display settings */
 .center {
   display: flex;
   justify-content: center;
 }
 
+/* ag-grid table settings */
 .table-container {
   height: 65vh;
   width: 80%;

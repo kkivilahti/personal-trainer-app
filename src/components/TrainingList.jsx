@@ -4,11 +4,16 @@ import { AgGridReact } from 'ag-grid-react';
 import dayjs from 'dayjs';
 import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
+import AddTraining from './AddTraining';
+import Delete from './Delete';
+import { deleteTraining } from '../api/trainingsApi';
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 export default function TrainingList() {
 
     const { trainings } = useOutletContext();
+    const { loadTrainings } = useOutletContext();
+    const { customers } = useOutletContext();
 
     const format = (date) => {
         return dayjs(date).format("D.M.YYYY");
@@ -24,6 +29,13 @@ export default function TrainingList() {
                 const customer = params.data?.customer;
                 return customer ? `${customer.firstname} ${customer.lastname}` : 'Customer not found';
             }
+        },
+        {
+            filter: false,
+            sortable: false,
+            cellRenderer: (params) => (
+                <Delete params={params} title="training" loadTrainings={loadTrainings} deleteTraining={deleteTraining} />
+            )
         }
     ]);
 
@@ -38,6 +50,8 @@ export default function TrainingList() {
     return (
         <>
             <Typography variant="h1">Trainings</Typography>
+
+            <AddTraining loadTrainings={loadTrainings} customers={customers} />
 
             <Box className="center">
                 <Box className="table-container">

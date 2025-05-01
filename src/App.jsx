@@ -9,22 +9,54 @@ import { getTrainings } from './api/trainingsApi';
 export default function App() {
 
   const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#008080',
+      },
+      secondary: {
+        main: '#a7505e',
+      },
+      background: {
+        default: '#e6f1f1',
+      },
+    },
     typography: {
       h1: {
         fontWeight: 400,
-        fontSize: '3rem',
-        padding: '3rem',
-        color: 'teal',
+        letterSpacing: 1.5,
+        fontSize: '3.2rem',
+        padding: '2rem',
       },
       h4: {
-        fontWeight: 400,
+        fontWeight: 500,
         fontSize: '1.2rem',
-        padding: '1rem',
       },
       body1: {
-        fontSize: '1.2rem',
-      }
-    }
+        fontSize: '1rem',
+      },
+    },
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            color: "white",
+            padding: '6px 20px',
+          },
+          primary: {
+            backgroundColor: '#008080',
+            '&:hover': {
+              backgroundColor: '#006F5F',
+            },
+          },
+          secondary: {
+            backgroundColor: '#a7505e',
+            '&:hover': {
+              backgroundColor: '#8a414d',
+            },
+          },
+        },
+      },
+    },
   });
 
   const [customers, setCustomers] = useState([]);
@@ -38,25 +70,34 @@ export default function App() {
     getTrainings().then(data => setTrainings(data));
   }, []);
 
+  // load data again after changes in the api
+  async function loadCustomers() {
+    setCustomers(await getCustomers());
+  }
+
+  async function loadTrainings() {
+    setTrainings(await getTrainings());
+  }
+
   return (
     <>
       <CssBaseline />
       <ThemeProvider theme={theme}>
 
-      {/* navigation */}
-      <AppBar sx={{ position: "sticky", backgroundColor: "teal" }}>
-        <Toolbar>
-          <Typography variant="h4" component="p" sx={{ color: 'white', fontSize: 18 }}>Personal Trainer App</Typography>
+        {/* navigation */}
+        <AppBar sx={{ position: "sticky", backgroundColor: "primary" }}>
+          <Toolbar>
+            <Typography variant="h4" component="p">Personal Trainer App</Typography>
 
-          <Box sx={{ display: "flex", flexGrow: 1, gap: 2, justifyContent: "flex-end" }}>
-            <NavLink to="/customers" className={({ isActive }) => isActive ? "nav-active" : "nav-link"}>Customers</NavLink>
-            <NavLink to="/trainings" className={({ isActive }) => isActive ? "nav-active" : "nav-link"}>Trainings</NavLink>
-          </Box>
-        </Toolbar>
-      </AppBar>
+            <Box sx={{ display: "flex", flexGrow: 1, gap: 2, justifyContent: "flex-end" }}>
+              <NavLink to="/customers" className={({ isActive }) => isActive ? "nav-active" : "nav-link"}>Customers</NavLink>
+              <NavLink to="/trainings" className={({ isActive }) => isActive ? "nav-active" : "nav-link"}>Trainings</NavLink>
+            </Box>
+          </Toolbar>
+        </AppBar>
 
-      {/* pass customer and training data to routed components via context */}
-      <Outlet context={{ customers, trainings }} />
+        {/* pass customer and training data to routed components via context */}
+        <Outlet context={{ customers, trainings, loadCustomers, loadTrainings }} />
       </ThemeProvider>
     </>
   )

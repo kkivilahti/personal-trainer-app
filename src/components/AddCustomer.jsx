@@ -1,0 +1,141 @@
+import { Button, Dialog, DialogContent, DialogTitle, DialogActions, TextField, Grid } from "@mui/material";
+import { useState } from "react";
+import { addCustomer } from "../api/customersApi";
+import AlertMessage from "./AlertMessage";
+
+export default function AddCustomer(props) {
+
+    const emptyCustomer = {
+        firstname: '',
+        lastname: '',
+        streetaddress: '',
+        postcode: '',
+        city: '',
+        email: '',
+        phone: ''
+    }
+
+    const [customer, setCustomer] = useState(emptyCustomer);
+    const [alertOpen, setAlertOpen] = useState(false);
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => setOpen(true);
+    const handleClose = () => {
+        // clear input fields when the form is closed
+        setCustomer(emptyCustomer);
+        setOpen(false);
+    };
+
+    // save new customer
+    const handleSave = async () => {
+        console.log("Add customer ", customer);
+
+        let success = false;
+
+        if (customer.firstname && customer.lastname && customer.streetaddress && customer.postcode && customer.city && customer.email && customer.phone) {
+            await addCustomer(customer);
+            success = true;
+            setOpen(false);
+        } else {
+            // empty input fields -> open alert message
+            setAlertOpen(true);
+        }
+
+        if (!success) {
+            console.error("Error while adding a customer");
+        }
+
+        await props.loadCustomers();
+    }
+
+    return (
+        <>
+            <Button sx={{ marginBottom: 3 }} variant="contained" color="secondary" onClick={handleClickOpen}>New customer</Button>
+
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle sx={{ textAlign: 'center' }}>Add customer</DialogTitle>
+                <DialogContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 3 }}>
+
+                    <Grid container columnSpacing={1} justifyContent="center">
+                        <Grid size={{ xs: 12, sm: 6 }}>
+                            <TextField
+                                sx={{ marginTop: 1 }}
+                                fullWidth
+                                label="Firstname"
+                                value={customer.firstname}
+                                onChange={(event) => setCustomer({ ...customer, firstname: event.target.value })}
+                            />
+                        </Grid>
+
+                        <Grid size={{ xs: 12, sm: 6 }}>
+                            <TextField
+                                sx={{ marginTop: 1 }}
+                                fullWidth
+                                label="Lastname"
+                                value={customer.lastname}
+                                onChange={(event) => setCustomer({ ...customer, lastname: event.target.value })}
+                            />
+                        </Grid>
+
+                        <Grid size={{ xs: 12 }}>
+                            <TextField
+                                sx={{ marginTop: 1 }}
+                                fullWidth
+                                label="Address"
+                                value={customer.streetaddress}
+                                onChange={(event) => setCustomer({ ...customer, streetaddress: event.target.value })}
+                            />
+                        </Grid>
+
+                        <Grid size={{ xs: 12, sm: 6 }}>
+                            <TextField
+                                sx={{ marginTop: 1 }}
+                                fullWidth
+                                label="Postcode"
+                                value={customer.postcode}
+                                onChange={(event) => setCustomer({ ...customer, postcode: event.target.value })}
+                            />
+                        </Grid>
+
+                        <Grid size={{ xs: 12, sm: 6 }}>
+                            <TextField
+                                sx={{ marginTop: 1 }}
+                                fullWidth
+                                label="City"
+                                value={customer.city}
+                                onChange={(event) => setCustomer({ ...customer, city: event.target.value })}
+                            />
+                        </Grid>
+
+                        <Grid size={{ xs: 12, sm: 6 }}>
+                            <TextField
+                                sx={{ marginTop: 1 }}
+                                fullWidth
+                                label="Email"
+                                value={customer.email}
+                                onChange={(event) => setCustomer({ ...customer, email: event.target.value })}
+                            />
+                        </Grid>
+
+                        <Grid size={{ xs: 12, sm: 6 }}>
+                            <TextField
+                                sx={{ marginTop: 1 }}
+                                fullWidth
+                                label="Phone"
+                                value={customer.phone}
+                                onChange={(event) => setCustomer({ ...customer, phone: event.target.value })}
+                            />
+                        </Grid>
+                    </Grid>
+
+                    <DialogActions sx={{ display: 'flex', flexGrow: 1, justifyContent: 'center', marginTop: 2 }}>
+                        <Button variant="contained" color="primary" onClick={handleClose}>Cancel</Button>
+                        <Button variant="contained" color="secondary" onClick={handleSave}>Save</Button>
+                    </DialogActions>
+                </DialogContent>
+            </Dialog>
+
+            {alertOpen && <AlertMessage open={alertOpen} setOpen={setAlertOpen} />}
+        </>
+    )
+}
