@@ -23,6 +23,20 @@ export async function addCustomer(customer) {
     return true;
 }
 
+export async function editCustomer(customer) {
+    const response = await fetch(customer._links.self.href, {
+        method: 'PUT',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify(customer),
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    
+    return true;
+}
+
 export async function deleteCustomer(customer) {
     const response = await fetch(customer._links.self.href, {
         method: 'DELETE'

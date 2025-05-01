@@ -20,11 +20,13 @@ export default function TrainingList() {
     };
 
     const [colDefs] = useState([
-        { field: 'date', valueFormatter: params => format(params.value) },
-        { field: 'duration' },
-        { field: 'activity' },
+        { field: 'date', valueFormatter: params => format(params.value), minWidth: 130, flex: 2 },
+        { field: 'duration', minWidth: 130, flex: 2 },
+        { field: 'activity', minWidth: 130, flex: 2 },
         {
             headerName: 'Customer',
+            minWidth: 130,
+            flex: 2,
             valueGetter: params => {
                 const customer = params.data?.customer;
                 return customer ? `${customer.firstname} ${customer.lastname}` : 'Customer not found';
@@ -33,6 +35,8 @@ export default function TrainingList() {
         {
             filter: false,
             sortable: false,
+            minWidth: 120,
+            flex: 1,
             cellRenderer: (params) => (
                 <Delete params={params} title="training" loadTrainings={loadTrainings} deleteTraining={deleteTraining} />
             )
@@ -43,8 +47,6 @@ export default function TrainingList() {
         sortable: true,
         filter: true,
         resizable: true,
-        minWidth: 130,
-        flex: 1
     };
 
     return (

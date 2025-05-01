@@ -3,6 +3,7 @@ import { useState } from "react";
 import dayjs from 'dayjs';
 import { deleteCustomer } from "../api/customersApi";
 import { deleteTraining } from "../api/trainingsApi";
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 export default function Delete(props) {
     const [toBeDeleted] = useState(props.params.data);
@@ -44,7 +45,7 @@ export default function Delete(props) {
 
     return (
         <>
-            <Button variant="contained" color="secondary" size="small" onClick={handleClickOpen}>Delete</Button>
+            <Button variant="contained" color="secondary" size="small" onClick={handleClickOpen} title="Delete"><DeleteOutlinedIcon /></Button>
 
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle sx={{ textAlign: 'center' }}>
