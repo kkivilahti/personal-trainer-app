@@ -6,12 +6,12 @@ import App from './App.jsx';
 import Error from './components/Error.jsx';
 import CustomerList from './components/CustomerList.jsx';
 import TrainingList from './components/TrainingList.jsx';
+import Calendar from './components/CalendarPage.jsx';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-
 
 const router = createBrowserRouter([
   {
@@ -30,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "trainings",
         element: <TrainingList />
+      },
+      {
+        path: "calendar",
+        element: <Calendar />
       },
     ]
   }

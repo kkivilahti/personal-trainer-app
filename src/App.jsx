@@ -92,6 +92,7 @@ export default function App() {
             <Box sx={{ display: "flex", flexGrow: 1, gap: 2, justifyContent: "flex-end" }}>
               <NavLink to="/customers" className={({ isActive }) => isActive ? "nav-active" : "nav-link"}>Customers</NavLink>
               <NavLink to="/trainings" className={({ isActive }) => isActive ? "nav-active" : "nav-link"}>Trainings</NavLink>
+              <NavLink to="/calendar" className={({ isActive }) => isActive ? "nav-active" : "nav-link"}>Calendar</NavLink>
             </Box>
           </Toolbar>
         </AppBar>
