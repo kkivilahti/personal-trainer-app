@@ -1,9 +1,10 @@
 import { Button, Dialog, DialogContent, DialogTitle, DialogActions, TextField, Grid, MenuItem, Select, FormControl, InputLabel } from "@mui/material";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useState } from "react";
 import { addTraining } from "../api/trainingsApi";
 import AlertMessage from "./AlertMessage";
+import dayjs from 'dayjs';
 
 export default function AddTraining(props) {
 
@@ -29,7 +30,7 @@ export default function AddTraining(props) {
         if (training.date && training.duration && training.activity && training.customer) {
             await addTraining(training);
             success = true;
-            
+
             setOpen(false);
             setTraining(emptyTraining);
         } else {
@@ -55,10 +56,13 @@ export default function AddTraining(props) {
                     <Grid container columnSpacing={1} justifyContent="center">
                         <Grid size={{ xs: 12, sm: 6 }}>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DatePicker
-                                    label="Date"
-                                    name="Date"
-                                    format="DD.MM.YYYY"
+                                <DateTimePicker
+                                    label="Date and time"
+                                    name="Date and time"
+                                    ampm={false}
+                                    format="DD.MM.YYYY hh:mm"
+                                    minTime={dayjs().hour(7).minute(0)}
+                                    maxTime={dayjs().hour(21).minute(0)}
                                     slotProps={{ textField: { fullWidth: true, sx: { marginTop: 1 } } }}
                                     value={training.date}
                                     onChange={(value) => setTraining({ ...training, date: value })}

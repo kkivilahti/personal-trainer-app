@@ -17,11 +17,11 @@ export default function TrainingList() {
     const { customers } = useOutletContext();
 
     const format = (date) => {
-        return dayjs(date).format("D.M.YYYY");
+        return dayjs(date).format("D.M.YYYY HH:mm");
     };
 
     const [colDefs] = useState([
-        { field: 'date', valueFormatter: params => format(params.value), minWidth: 130, flex: 2 },
+        { field: 'date', headerName: 'Date and time', valueFormatter: params => format(params.value), minWidth: 130, flex: 2 },
         { field: 'duration', minWidth: 130, flex: 2 },
         { field: 'activity', minWidth: 130, flex: 2 },
         {
