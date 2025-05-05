@@ -34,6 +34,22 @@ a:hover {
 .nav-link:hover,
 .nav-active:hover {
   color: #7ccec6;
+  transition: color 0.3s ease;
+}
+
+.drawer-link {
+  font-size: 1.1rem;
+  color: #ca354e;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.drawer-active {
+  font-size: 1.1rem;
+  color: #c23b52;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
 }
 
 
@@ -125,6 +141,10 @@ a:hover {
   border: 1px solid #6b2834 !important;
 }
 
+/* datetimepicker buttons */
+.MuiPickersLayout-actionBar button {
+  color: teal;
+}
 
 @media (max-width: 700px) {
   .fc-toolbar .fc-today-button {

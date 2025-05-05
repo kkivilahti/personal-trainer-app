@@ -54,7 +54,7 @@ export default function AddCustomer(props) {
                 <DialogTitle sx={{ textAlign: 'center' }}>Add customer</DialogTitle>
                 <DialogContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 3 }}>
 
-                <Grid container columnSpacing={1} justifyContent="center">
+                    <Grid container columnSpacing={1} justifyContent="center">
                         <Grid size={{ xs: 12, sm: 6 }}>
                             <TextField
                                 sx={{ marginTop: 1 }}

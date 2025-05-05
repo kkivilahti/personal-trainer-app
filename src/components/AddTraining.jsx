@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogContent, DialogTitle, DialogActions, TextField, Grid, MenuItem, Select, FormControl, InputLabel } from "@mui/material";
+import { Button, Dialog, DialogContent, DialogTitle, DialogActions, TextField, Grid, MenuItem, Select, FormControl, InputLabel, Box } from "@mui/material";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useState } from "react";
@@ -59,12 +59,12 @@ export default function AddTraining(props) {
                                 <DateTimePicker
                                     label="Date and time"
                                     name="Date and time"
+                                    value={training.date}
                                     ampm={false}
-                                    format="DD.MM.YYYY hh:mm"
+                                    format="DD.MM.YYYY HH:mm"
                                     minTime={dayjs().hour(7).minute(0)}
                                     maxTime={dayjs().hour(21).minute(0)}
                                     slotProps={{ textField: { fullWidth: true, sx: { marginTop: 1 } } }}
-                                    value={training.date}
                                     onChange={(value) => setTraining({ ...training, date: value })}
                                 />
                             </LocalizationProvider>

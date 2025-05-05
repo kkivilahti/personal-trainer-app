@@ -19,7 +19,7 @@ export default function EditCustomer(props) {
             await props.editCustomer(customer);
             success = true;
             setOpen(false);
-            
+
             // refresh both lists after editing
             await props.loadCustomers();
             await props.loadTrainings();
