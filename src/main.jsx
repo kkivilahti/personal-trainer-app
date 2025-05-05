@@ -7,6 +7,7 @@ import Error from './components/Error.jsx';
 import CustomerList from './components/CustomerList.jsx';
 import TrainingList from './components/TrainingList.jsx';
 import Calendar from './components/CalendarPage.jsx';
+import Stats from './components/StatsPage.jsx';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "calendar",
         element: <Calendar />
+      },
+      {
+        path: "statistics",
+        element: <Stats />
       },
     ]
   }

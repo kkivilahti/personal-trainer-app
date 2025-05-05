@@ -104,6 +104,7 @@ export default function App() {
               <NavLink to="/customers" className={({ isActive }) => isActive ? "nav-active" : "nav-link"}>Customers</NavLink>
               <NavLink to="/trainings" className={({ isActive }) => isActive ? "nav-active" : "nav-link"}>Trainings</NavLink>
               <NavLink to="/calendar" className={({ isActive }) => isActive ? "nav-active" : "nav-link"}>Calendar</NavLink>
+              <NavLink to="/statistics" className={({ isActive }) => isActive ? "nav-active" : "nav-link"}>Statistics</NavLink>
             </Box>
 
             {/* mobile menu button */}
@@ -130,6 +131,7 @@ export default function App() {
                   <NavLink to="/customers" onClick={toggleDrawer(false)} className={({ isActive }) => isActive ? 'drawer-active' : 'drawer-link'}>Customers</NavLink>
                   <NavLink to="/trainings" onClick={toggleDrawer(false)} className={({ isActive }) => isActive ? 'drawer-active' : 'drawer-link'}>Trainings</NavLink>
                   <NavLink to="/calendar" onClick={toggleDrawer(false)} className={({ isActive }) => isActive ? 'drawer-active' : 'drawer-link'}>Calendar</NavLink>
+                  <NavLink to="/statistics" onClick={toggleDrawer(false)} className={({ isActive }) => isActive ? 'drawer-active' : 'drawer-link'}>Statistics</NavLink>
                 </Box>
               </Box>
 
