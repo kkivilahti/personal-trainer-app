@@ -15,6 +15,7 @@ export default function Calendar() {
 
     const [open, setOpen] = useState(false);
 
+    // set event/training data and open event details dialog
     const handleEventClick = (info) => {
         console.log("Clicked event", info);
         setSelectedEvent(info.event);
@@ -29,12 +30,13 @@ export default function Calendar() {
     const calculateEndingTime = (date, duration) => {
         const d = dayjs(date);
         return d.add(parseInt(duration), 'minute').toISOString();
-    }
+    };
 
     const formatDateAndTime = (date) => {
         return dayjs(date).format("DD.MM.YYYY HH:mm");
     };
 
+    // map trainings as calendar events
     const events = trainings.map((training) => ({
         title: `${training.activity} / ${training.customer.firstname} ${training.customer.lastname}`,
         start: training.date,
@@ -50,13 +52,13 @@ export default function Calendar() {
                     initialView="dayGridMonth"
                     firstDay={1} // monday
                     slotMinTime="06:00:00"
-                    headerToolbar={{
+                    headerToolbar={{ // calendar action buttons
                         left: 'prev,next today',
                         center: 'title',
                         right: 'timeGridDay,timeGridWeek,dayGridMonth'
                     }}
-                    events={events}
-                    eventClick={handleEventClick}
+                    events={events} // display trainings as calendar events
+                    eventClick={handleEventClick} // open event detail dialog on click
                     eventBackgroundColor="#a7505e"
                     eventBorderColor="#8a414d"
                     slotEventOverlap={false}
@@ -82,6 +84,7 @@ export default function Calendar() {
                 />
             </Box>
 
+            {/* show event details in dialog */}
             {selectedEvent && (
                 <Dialog open={open} onClose={handleEventClose}>
                     <DialogTitle>

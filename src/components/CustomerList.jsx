@@ -16,10 +16,10 @@ export default function CustomerList() {
 
     const [alertOpen, setAlertOpen] = useState(false);
 
-    const { customers } = useOutletContext();
-    const { loadCustomers } = useOutletContext();
-    const { loadTrainings } = useOutletContext();
+    // get data and reloading functions from route context
+    const { customers, loadCustomers, loadTrainings } = useOutletContext();
 
+    // define columns for ag-grid table
     const [colDefs] = useState([
         { field: 'lastname', minWidth: 130, flex: 2 },
         { field: 'firstname', minWidth: 130, flex: 2 },

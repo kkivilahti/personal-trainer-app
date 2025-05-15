@@ -11,15 +11,14 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 
 export default function TrainingList() {
 
-    const { trainings } = useOutletContext();
-    const { loadTrainings } = useOutletContext();
-    const { loadCustomers } = useOutletContext();
-    const { customers } = useOutletContext();
+    // get data and reloading functions from route context
+    const { trainings, loadTrainings, loadCustomers, customers } = useOutletContext();
 
     const format = (date) => {
         return dayjs(date).format("D.M.YYYY HH:mm");
     };
 
+    // define columns for ag-grid table
     const [colDefs] = useState([
         { field: 'date', headerName: 'Date and time', valueFormatter: params => format(params.value), minWidth: 130, flex: 2 },
         { field: 'duration', minWidth: 130, flex: 2 },

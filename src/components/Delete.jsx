@@ -5,7 +5,10 @@ import { deleteCustomer } from "../api/customersApi";
 import { deleteTraining } from "../api/trainingsApi";
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
+// reusable component for deleting either a customer or a training
 export default function Delete(props) {
+    
+    // item to be deleted passed via props
     const [toBeDeleted] = useState(props.params.data);
     const [open, setOpen] = useState(false);
 
@@ -16,7 +19,7 @@ export default function Delete(props) {
         return dayjs(date).format("MMMM D, YYYY");
     };
 
-
+    // handle deletion based on item type
     const confirmDelete = async () => {
         console.log(`Deleting ${props.title}`, toBeDeleted);
 
@@ -40,7 +43,7 @@ export default function Delete(props) {
             setOpen(false);
         }
 
-        // refresh both lists
+        // refresh list pages
         await props.loadCustomers();
         await props.loadTrainings();
     }

@@ -16,11 +16,12 @@ export default function EditCustomer(props) {
         let success = false;
 
         if (customer.firstname && customer.lastname && customer.streetaddress && customer.postcode && customer.city && customer.email && customer.phone) {
+            // all input fields are filled -> save edited customer
             await props.editCustomer(customer);
             success = true;
             setOpen(false);
 
-            // refresh both lists after editing
+            // refresh both lists
             await props.loadCustomers();
             await props.loadTrainings();
         } else {

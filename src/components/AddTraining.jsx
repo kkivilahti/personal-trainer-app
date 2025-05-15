@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogContent, DialogTitle, DialogActions, TextField, Grid, MenuItem, Select, FormControl, InputLabel, Box } from "@mui/material";
+import { Button, Dialog, DialogContent, DialogTitle, DialogActions, TextField, Grid, MenuItem, Select, FormControl, InputLabel } from "@mui/material";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useState } from "react";
@@ -28,11 +28,12 @@ export default function AddTraining(props) {
         let success = false;
 
         if (training.date && training.duration && training.activity && training.customer) {
+            // all input fields are filled -> add new training
             await addTraining(training);
             success = true;
 
             setOpen(false);
-            setTraining(emptyTraining);
+            setTraining(emptyTraining); // reset form
         } else {
             // empty input fields -> open alert message
             setAlertOpen(true);
@@ -42,6 +43,7 @@ export default function AddTraining(props) {
             console.error("Error while adding a training");
         }
 
+        // reload trainings
         await props.loadTrainings();
     }
 
@@ -52,8 +54,9 @@ export default function AddTraining(props) {
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle sx={{ textAlign: 'center' }}>Add training</DialogTitle>
                 <DialogContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 3 }}>
-
                     <Grid container columnSpacing={1} justifyContent="center">
+
+                        {/* date and time */}
                         <Grid size={{ xs: 12, sm: 6 }}>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DateTimePicker
@@ -70,6 +73,7 @@ export default function AddTraining(props) {
                             </LocalizationProvider>
                         </Grid>
 
+                        {/* duration */}
                         <Grid size={{ xs: 12, sm: 6 }}>
                             <TextField
                                 sx={{ marginTop: 1 }}
@@ -82,6 +86,7 @@ export default function AddTraining(props) {
                             />
                         </Grid>
 
+                        {/* activity name */}
                         <Grid size={{ xs: 12, sm: 6 }}>
                             <TextField
                                 sx={{ marginTop: 1 }}
@@ -93,6 +98,7 @@ export default function AddTraining(props) {
                             />
                         </Grid>
 
+                        {/* customer */}
                         <Grid size={{ xs: 12, sm: 6 }}>
                             <FormControl fullWidth sx={{ marginTop: 1 }}>
                                 <InputLabel id="customer-label">Customer</InputLabel>

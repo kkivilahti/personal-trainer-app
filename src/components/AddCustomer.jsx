@@ -22,18 +22,18 @@ export default function AddCustomer(props) {
     const handleClickOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    // save new customer
     const handleSave = async () => {
         console.log("Add customer ", customer);
 
         let success = false;
 
         if (customer.firstname && customer.lastname && customer.streetaddress && customer.postcode && customer.city && customer.email && customer.phone) {
+            // all input fields are filled -> add customer
             await addCustomer(customer);
             success = true;
 
             setOpen(false);
-            setCustomer(emptyCustomer);
+            setCustomer(emptyCustomer); // reset form
         } else {
             // empty input fields -> open alert message
             setAlertOpen(true);
@@ -43,6 +43,7 @@ export default function AddCustomer(props) {
             console.error("Error while adding a customer");
         }
 
+        // reload customers
         await props.loadCustomers();
     }
 
@@ -53,8 +54,9 @@ export default function AddCustomer(props) {
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle sx={{ textAlign: 'center' }}>Add customer</DialogTitle>
                 <DialogContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 3 }}>
-
                     <Grid container columnSpacing={1} justifyContent="center">
+
+                        {/* firstname */}
                         <Grid size={{ xs: 12, sm: 6 }}>
                             <TextField
                                 sx={{ marginTop: 1 }}
@@ -66,6 +68,7 @@ export default function AddCustomer(props) {
                             />
                         </Grid>
 
+                        {/* lastname */}
                         <Grid size={{ xs: 12, sm: 6 }}>
                             <TextField
                                 sx={{ marginTop: 1 }}
@@ -77,6 +80,7 @@ export default function AddCustomer(props) {
                             />
                         </Grid>
 
+                        {/* address */}
                         <Grid size={{ xs: 12 }}>
                             <TextField
                                 sx={{ marginTop: 1 }}
@@ -88,6 +92,7 @@ export default function AddCustomer(props) {
                             />
                         </Grid>
 
+                        {/* postcode */}
                         <Grid size={{ xs: 12, sm: 6 }}>
                             <TextField
                                 sx={{ marginTop: 1 }}
@@ -99,6 +104,7 @@ export default function AddCustomer(props) {
                             />
                         </Grid>
 
+                        {/* city */}
                         <Grid size={{ xs: 12, sm: 6 }}>
                             <TextField
                                 sx={{ marginTop: 1 }}
@@ -110,6 +116,7 @@ export default function AddCustomer(props) {
                             />
                         </Grid>
 
+                        {/* email */}
                         <Grid size={{ xs: 12, sm: 6 }}>
                             <TextField
                                 sx={{ marginTop: 1 }}
@@ -121,6 +128,7 @@ export default function AddCustomer(props) {
                             />
                         </Grid>
 
+                        {/* phone */}
                         <Grid size={{ xs: 12, sm: 6 }}>
                             <TextField
                                 sx={{ marginTop: 1 }}
@@ -132,6 +140,7 @@ export default function AddCustomer(props) {
                             />
                         </Grid>
                     </Grid>
+
                     <DialogActions sx={{ display: 'flex', flexGrow: 1, justifyContent: 'center', marginTop: 2 }}>
                         <Button variant="contained" color="primary" onClick={handleClose}>Cancel</Button>
                         <Button variant="contained" color="secondary" onClick={handleSave}>Save</Button>
