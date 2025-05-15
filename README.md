@@ -1,12 +1,33 @@
-# React + Vite
+# Personal Trainer App
+### Final project for Frontend Programming course
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project was created with React, Vite, and JavaScript.
 
-Currently, two official plugins are available:
+The assignment consisted of four parts:
+1. List pages for customers and trainings, with navigation between pages
+2. Add, edit and delete functionalities for the list pages
+3. Export feature for customer data, calendar page for viewing trainings, and deployment to the [cloud](https://personal-trainer-app-4xok.onrender.com/)
+4. Statistics page that shows the total time of booked trainings
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### What I learned
+Through this project, I strengthened my skills in React, particularly in building reusable components and managing data flow between them. I also gained practical experience working with REST APIs, and learned how to implement CRUD features using external data sources.
 
-## Expanding the ESLint configuration
+In addition, I became more confident using third-party libraries such as Material UI, FullCalendar, and Recharts. Integrating these tools taught me how to work effectively with external components and adapt them to fit my project's needs. While learning to use new libraries, I also learned to interpret technical documentation better.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+I believe this project also enhanced my debugging skills. The browser console alone can catch many bugs, and ESLint proved to be a valuable tool as well.
+
+### Installation
+1. Clone the repository
+```
+git clone https://github.com/kkivilahti/personal-trainer-app.git
+cd personal-trainer-app
+```
+2. Install dependencies
+```
+npm install
+```
+3. Run the application
+```
+npm run dev
+```
+4. Open the app in your browser by navigating to http://localhost:5173 (or the URL shown in your terminal)
